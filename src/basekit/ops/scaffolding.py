@@ -88,4 +88,4 @@ def test_scaffolding(style):
 				print(is_writable("/tmp/test"))
 				print("got somethign")
 
-	return styles["workstation"]
+	return scaffolding_styles["workstation"]

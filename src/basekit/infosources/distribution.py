@@ -2,6 +2,11 @@ import os
 import inspect
 import importlib.metadata
 
+from basekit.settings import VERSION, PROJECT_NAME, PROJECT_ROOT
+
+def info():
+    return {"PROJECT_ROOT":PROJECT_ROOT, "PROJECT_NAME":PROJECT_NAME, "VERSION":VERSION}
+
 def call_order():
     stack = inspect.stack()
     calls = []

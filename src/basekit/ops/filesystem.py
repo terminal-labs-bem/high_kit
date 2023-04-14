@@ -1,7 +1,18 @@
 import os
 import sys
+import tempfile
 from pathlib import Path
 from shutil import copyfile, move, rmtree
+
+def file_hash(file):
+    BLOCK_SIZE = 65536
+    file_hash = hashlib.sha256()
+    with open(file, "rb") as f:
+        fb = f.read(BLOCK_SIZE)
+        while len(fb) > 0:
+            file_hash.update(fb)
+            fb = f.read(BLOCK_SIZE)
+    return file_hash.hexdigest()
 
 def is_writable(path):
     try:
