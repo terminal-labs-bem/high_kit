@@ -1,5 +1,6 @@
 import os
 import sys
+import copy
 from os import listdir
 from os.path import isfile, join
 import importlib
@@ -57,5 +58,28 @@ def _replace(source_file_path, pattern, substring):
         with open(source_file_path, 'r') as source_file:
             for line in source_file:
                 target_file.write(line.replace(pattern, substring))
+    remove(source_file_path)
+    move(target_file_path, source_file_path)
+
+def match_ignore_whitespace(a, b):
+    if a.strip() == b.strip(): 
+        return True
+    else:
+        return False
+
+def _replace_many_lines(source_file_path, patterns):
+    with open(source_file_path) as f:
+        lines = [line for line in f]
+
+    for line in lines:
+        for pattern in patterns:
+            if match_ignore_whitespace(line, pattern[0]):
+                lines[lines.index(line)] = pattern[1] + "\n"
+
+
+    fh, target_file_path = mkstemp()
+    with open(target_file_path, 'w') as target_file:
+        for line in lines:
+            target_file.write(line)
     remove(source_file_path)
     move(target_file_path, source_file_path)

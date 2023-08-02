@@ -13,7 +13,7 @@ from os.path import isdir, dirname, realpath, abspath, join, exists
 from zipfile import ZipFile
 from configparser import ConfigParser
 
-from .. utils import _fast_scandir, _fast_scandfiles, _rename_dir, _replace, _delete_dir
+from .. utils import _fast_scandir, _fast_scandfiles, _rename_dir, _replace, _replace_many_lines, _delete_dir
 
 def dl_zip(url, name, workingdir):
     if not exists(workingdir + name):
@@ -58,17 +58,32 @@ def modify_repo(path, oldname, newname):
     files = _fast_scandfiles(path)
     abs_files = []
     for f in files:
-        abs_files.append(os.path.abspath(f))       
+        abs_files.append(os.path.abspath(f))
 
+    print("renaming dirs")    
     for dir in abs_dirs:
         if dir in  abs_renamedirs:
             _rename_dir(dir, os.path.dirname(dir) + "/" + newname)
 
+    print("editing files")
+
+    edit_directives = []
     for f in abs_editlines:
-        print(f)
-        print(abs_editlines)
-        if f in abs_editlines:
-            _replace(f[0],f[1],f[2])
+        edit_directives.append([f[0], [f[1],f[2]]])
+    
+    files = []
+    groups = {}
+    for edit_directive in edit_directives:
+        if edit_directive[0] not in files:
+            files.append(edit_directive[0])
+        if edit_directive[0] not in groups.keys():
+            groups[edit_directive[0]] = [edit_directive[1]]
+        else:
+            groups[edit_directive[0]].append(edit_directive[1])
+
+    for key in groups.keys():
+        _replace_many_lines(key, groups[key])
+
 
     os.chdir(last_cwd)
     # toml_string = toml.dumps(toml_dict)
