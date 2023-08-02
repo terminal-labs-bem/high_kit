@@ -1,13 +1,16 @@
 [tool.poetry]
-name = "basekit"
+name = "lowkit"
 version = "0.1.0"
 description = ""
 authors = ["Michael Verhulst <michael@terminallabs.com>"]
 readme = "README.md"
-packages = [{include = "basekit", from = "src"}]
+packages = [{include = "lowkit", from = "src"}]
 
 [tool.poetry.dependencies]
 python = "^3.8"
+
+[tool.poetry.scripts]
+lowkit = 'lowkit.cli:cli'
 
 [build-system]
 requires = ["poetry-core"]

@@ -1,8 +1,8 @@
 import os
 import inspect
 import importlib.metadata
-
-from basekit.settings import VERSION, PROJECT_NAME, PROJECT_ROOT
+from pathlib import Path
+from lowkit.settings import VERSION, PROJECT_NAME, PROJECT_ROOT
 
 def info():
     return {"PROJECT_ROOT":PROJECT_ROOT, "PROJECT_NAME":PROJECT_NAME, "VERSION":VERSION}
@@ -49,6 +49,13 @@ def get_distribution_name():
     name = package
     return name
 
+def get_distribution_source():
+    calls = call_order()
+    for call in calls:
+        if ".py" in call:
+            path = Path(call)
+            return path.parent.absolute()
+
 def get_distribution_files(name):
     files = []
     for f in importlib.metadata.files(name):
@@ -68,8 +75,19 @@ def get_distribution_version(name):
     version = importlib.metadata.version(name)
     return version
 
+def get_distribution_asset_filepath_by_ext(ext):
+    path = get_distribution_source()
+    files = []
+    for r, d, f in os.walk(path):
+        for file in f:
+            if '.' + ext in file:
+                files.append(os.path.join(r, file))
+    return files
+
 def distribution_install_editable(name):
     for f in importlib.metadata.files(name):
         path = str(f.locate())
         if 'site-packages' in path and '.pth' in path:
             return True
+        else:
+            return False

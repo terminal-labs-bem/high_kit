@@ -4,7 +4,7 @@ package_dir = \
 {'': 'src'}
 
 packages = \
-['basekit']
+['lowkit']
 
 package_data = \
 {'': ['*']}
