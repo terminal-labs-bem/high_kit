@@ -1,17 +1,21 @@
-from setuptools import setup, find_packages
+# -*- coding: utf-8 -*-
+from setuptools import setup
 
 package_dir = \
 {'': 'src'}
 
 packages = \
-['lowkit']
+['highkit']
 
 package_data = \
 {'': ['*']}
 
+entry_points = \
+{'console_scripts': ['highkit = highkit.cli:cli']}
+
 setup_kwargs = {
-    'name': 'basekit',
-    'version': '0.1.4',
+    'name': 'highkit',
+    'version': '0.0.1',
     'description': '',
     'long_description': '',
     'author': 'Michael Verhulst',
@@ -22,8 +26,9 @@ setup_kwargs = {
     'package_dir': package_dir,
     'packages': packages,
     'package_data': package_data,
-    'include_package_data': True,
+    'entry_points': entry_points,
     'python_requires': '>=3.8,<4.0',
 }
+
 
 setup(**setup_kwargs)

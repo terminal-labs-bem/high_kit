@@ -1,16 +1,17 @@
 [tool.poetry]
-name = "lowkit"
-version = "0.1.0"
+name = "highkit"
+version = "0.0.1"
 description = ""
 authors = ["Michael Verhulst <michael@terminallabs.com>"]
 readme = "README.md"
-packages = [{include = "lowkit", from = "src"}]
+packages = [{include = "highkit", from = "src"}]
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = "^3.11"
+lowkit = { git = "https://github.com/terminal-labs/low_kit.git", branch = "main" }
 
 [tool.poetry.scripts]
-lowkit = 'lowkit.cli:cli'
+highkit = 'highkit.cli:cli'
 
 [build-system]
 requires = ["poetry-core"]

@@ -1,4 +1,4 @@
-APPNAME="factory"
+APPNAME="highkit"
 SUDOUSERNAME=$(SUDO_USER)
 CONFIGURATION="default"
 TYPE="python"
@@ -21,9 +21,9 @@ download_bash_environment_manager:
 		sudo su -m $(SUDO_USER) -c "mkdir -p .tmp"; \
 		sudo su -m $(SUDO_USER) -c "mkdir -p .tmp/prep"; \
 		sudo su -m $(SUDO_USER) -c "mkdir -p .tmp/bem"; \
-  		sudo su -m $(SUDO_USER) -c "cd .tmp/prep; wget -O bash-environment-manager.zip https://github.com/terminal-labs/bash-environment-manager/archive/refs/heads/master.zip"; \
+  		sudo su -m $(SUDO_USER) -c "cd .tmp/prep; wget -O bash-environment-manager.zip https://github.com/terminal-labs/bash-environment-manager/archive/refs/heads/main.zip"; \
   		sudo su -m $(SUDO_USER) -c "cd .tmp/prep; unzip -n bash-environment-manager.zip"; \
-  		sudo su -m $(SUDO_USER) -c "cp -r .tmp/prep/bash-environment-manager-master/* .tmp/bem"; \
+  		sudo su -m $(SUDO_USER) -c "cp -r .tmp/prep/bash-environment-manager-main/* .tmp/bem"; \
 	fi
 
 psf: CONFIGURATION="default"
@@ -39,7 +39,7 @@ vagrant.psf: INTERNALUSER="vagrant"
 vagrant.psf: PLUGIN="standard"
 vagrant.psf: download_bash_environment_manager
 	@if test ! -f "Vagrantfile";then \
-		wget https://raw.githubusercontent.com/terminal-labs/bash-environment-shelf/master/vagrantfiles/Vagrantfile; \
+		wget https://raw.githubusercontent.com/terminal-labs/bash-environment-shelf/main/vagrantfiles/Vagrantfile; \
 		chown $(SUDO_USER) Vagrantfile; \
 	fi
 	$(call kickoff)
