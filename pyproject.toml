@@ -8,7 +8,7 @@ packages = [{include = "highkit", from = "src"}]
 
 [tool.poetry.dependencies]
 python = "^3.11"
-lowkit = { git = "https://github.com/terminal-labs/low_kit.git", branch = "main" }
+lowkit = { git = "https://github.com/terminal-labs-bem/low_kit.git", branch = "main" }
 
 [tool.poetry.scripts]
 highkit = 'highkit.cli:cli'
