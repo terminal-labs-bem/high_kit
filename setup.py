@@ -5,16 +5,16 @@ package_dir = \
 {'': 'src'}
 
 packages = \
-['highkit']
+['kitstandard']
 
 package_data = \
 {'': ['*']}
 
 entry_points = \
-{'console_scripts': ['highkit = highkit.cli:cli']}
+{'console_scripts': ['kitstandard = kitstandard.cli:cli']}
 
 setup_kwargs = {
-    'name': 'highkit',
+    'name': 'kitstandard',
     'version': '0.0.1',
     'description': '',
     'long_description': '',
