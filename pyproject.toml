@@ -1,16 +1,16 @@
 [tool.poetry]
-name = "kitstandard"
+name = "highkit"
 version = "0.0.1"
 description = ""
 authors = ["Michael Verhulst <michael@terminallabs.com>"]
 readme = "README.md"
-packages = [{include = "kitstandard", from = "src"}]
+packages = [{include = "highkit", from = "src"}]
 
 [tool.poetry.dependencies]
 python = "^3.11"
 
 [tool.poetry.scripts]
-kitstandard = 'kitstandard.cli:cli'
+highkit = 'highkit.ux.cli:cli'
 
 [build-system]
 requires = ["poetry-core"]

@@ -1,4 +1,4 @@
-APPNAME="kitstandard"
+APPNAME="highkit"
 SUDOUSERNAME=$(SUDO_USER)
 CONFIGURATION="default"
 TYPE="python"
