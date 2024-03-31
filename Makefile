@@ -13,8 +13,7 @@ help:
 	@echo "usage: make [command]"
 
 define kickoff
-	@bash .tmp/bem/common/user.sh $(APPNAME) $(SUDOUSERNAME) $(CONFIGURATION) $(TYPE) $(PYTHONVERSION) $(HOSTTYPE) $(INTERNALUSER) $(PLATFORM) $(PLUGIN) $(EXTRA)
-	@sudo bash .tmp/bem/common/superuser.sh $(APPNAME) $(SUDOUSERNAME) $(CONFIGURATION) $(TYPE) $(PYTHONVERSION) $(HOSTTYPE) $(INTERNALUSER) $(PLATFORM) $(PLUGIN) $(EXTRA)
+	@sudo bash .tmp/bem/common/preinstall.sh $(APPNAME) $(SUDOUSERNAME) $(CONFIGURATION) $(TYPE) $(PYTHONVERSION) $(HOSTTYPE) $(INTERNALUSER) $(PLATFORM) $(PLUGIN) $(EXTRA)
 endef
 
 download_bash_environment_manager:
@@ -22,11 +21,9 @@ download_bash_environment_manager:
 		sudo su -m $(SUDO_USER) -c "mkdir -p .tmp"; \
 		sudo su -m $(SUDO_USER) -c "mkdir -p .tmp/prep"; \
 		sudo su -m $(SUDO_USER) -c "mkdir -p .tmp/bem"; \
-		sudo su -m $(SUDO_USER) -c "mkdir -p .tmp/patterns"; \
   		sudo su -m $(SUDO_USER) -c "cd .tmp/prep; wget -O shelf-main.zip https://github.com/terminal-labs-bem/shelf/archive/refs/heads/main.zip"; \
   		sudo su -m $(SUDO_USER) -c "cd .tmp/prep; unzip -n shelf-main.zip"; \
   		sudo su -m $(SUDO_USER) -c "cp -r .tmp/prep/shelf-main/bash-environment-manager/* .tmp/bem"; \
-  		sudo su -m $(SUDO_USER) -c "cp -r .tmp/prep/shelf-main/bash-environment-manager/patterns/* .tmp/patterns"; \
 	fi
 
 venv.python: HOSTTYPE="host"

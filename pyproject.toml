@@ -8,6 +8,11 @@ packages = [{include = "highkit", from = "src"}]
 
 [tool.poetry.dependencies]
 python = "^3.11"
+pytest = "^8.1.1"
+black = "^24.3.0"
+flake8 = "^7.0.0"
+coverage = "^7.4.4"
+lowkit = {git = "https://github.com/terminal-labs-bem/lowkit.git"}
 
 [tool.poetry.scripts]
 highkit = 'highkit.ux.cli:cli'
